@@ -2,15 +2,19 @@ makeCacheMatrix <- function(x = matrix()) {
   # This function creates a special "matrix" object that can cache its inverse.
   m <- NULL
   
+  #Set function to reset global variables.
   set <- function(y) {
     assign('x', y, envir = environment())
     assign('m', NULL, envir = .GlobalEnv)
   }
   
+  #Get function to get the current m variable.
   get <- function() mget('x',envir = environment())
   
+  #Set function to change the current inverse matrix value in m.
   setmatrix <- function(solve) assign('m', solve, envir = .GlobalEnv)
   
+  #Get function to change the current inverse matrix value in m.
   getmatrix <- function() mget('m',envir = .GlobalEnv)
   
   list(set = set, get = get,
